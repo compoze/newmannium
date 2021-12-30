@@ -111,7 +111,7 @@ USAGE
   $ newmannium newmannium run -c <value> [-h]
 
 FLAGS
-  -c, --collection=<value>  (required) postman collection path
+  -c, --collection=<value>  (required) name of collection in postman cloud to run
   -h, --help                Show CLI help.
 
 DESCRIPTION

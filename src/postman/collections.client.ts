@@ -32,6 +32,16 @@ class PostmanClient {
         return result.data.collections
     }
 
+    getCollection = async (id: string): Promise<any> => {
+        const result = await axios.get<GetAllCollectionsResponse>(`${BASE_URI}/collections/${id}`, {
+            headers: {
+                "x-api-key": this._apiKey
+            }
+        });
+
+        return result.data
+    }
+
 }
 
 const createPostmanClient = (): PostmanClient => {
@@ -40,4 +50,4 @@ const createPostmanClient = (): PostmanClient => {
 
 const postmanClient = createPostmanClient();
 
-export { PostmanClient, postmanClient }
+export { PostmanClient, postmanClient, Collection }
