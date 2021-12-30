@@ -31,6 +31,7 @@ USAGE
 <!-- commands -->
 * [`newmannium help [COMMAND]`](#newmannium-help-command)
 * [`newmannium newmannium PERSON`](#newmannium-newmannium-person)
+* [`newmannium newmannium collections`](#newmannium-newmannium-collections)
 * [`newmannium newmannium run`](#newmannium-newmannium-run)
 * [`newmannium plugins`](#newmannium-plugins)
 * [`newmannium plugins:inspect PLUGIN...`](#newmannium-pluginsinspect-plugin)
@@ -82,6 +83,24 @@ EXAMPLES
 ```
 
 _See code: [dist/commands/newmannium/index.ts](https://github.com/compoze/newmannium/blob/v0.0.0/dist/commands/newmannium/index.ts)_
+
+## `newmannium newmannium collections`
+
+List all collections user has access to
+
+```
+USAGE
+  $ newmannium newmannium collections [-h]
+
+FLAGS
+  -h, --help  Show CLI help.
+
+DESCRIPTION
+  List all collections user has access to
+
+EXAMPLES
+  $ oex newmannium collections
+```
 
 ## `newmannium newmannium run`
 
