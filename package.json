@@ -1,6 +1,6 @@
 {
   "name": "newmannium",
-  "description": "CLI to manage postman cloud resources easily",
+  "description": "CLI to enable remote execution of Postman Team Workspace Collections",
   "version": "0.0.4",
   "author": "Compoze Labs",
   "bin": {
