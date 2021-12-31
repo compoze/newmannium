@@ -12,7 +12,7 @@ Newmannium is also the name of Newman's Millenium party (of which Jerry was not 
 
 ## Why Newmannium
 
-While Postman's cloud-based Workspaces making collaborating on collections easy, there is not anyway to remotely execute a Postman collection easily (for example in a CI pipeline). Newmannium gives the ability to pull collections from a shared Postman Workspace, and execute it via the newman command line runner
+While Postman's cloud-based Workspaces making collaborating on collections easy, there is not any way to remotely execute a Postman collection easily (for example in a CI pipeline). Newmannium gives the ability to pull collections from a shared Postman Workspace, and execute it via the newman command line runner
 
 ## Docs
 <!-- toc -->
