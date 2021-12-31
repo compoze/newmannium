@@ -1,5 +1,5 @@
 import { Command, Flags } from "@oclif/core";
-import { Collection, createPostmanClient } from "../postman/collections.client";
+import { Collection, createPostmanClient, Environment } from "../postman/collections.client";
 const newman = require('newman'); // require newman in your project
 
 export default class World extends Command {
@@ -14,6 +14,9 @@ export default class World extends Command {
     help: Flags.help({ char: 'h' }),
     collection: Flags.string({
       char: 'c', description: 'name of collection in postman cloud to run', required: true
+    }),
+    environment: Flags.string({
+      char: 'e', description: 'name of environment to use with collection', required: false
     }),
   }
 
@@ -33,12 +36,24 @@ export default class World extends Command {
     const postmanClient = createPostmanClient(apiKey);
 
     const collections: Collection[] = await postmanClient.getCollections();
-
     const collection: Collection | undefined = collections.find(collection => collection.name === collectionName)
 
+    let environmentToUse: Environment | undefined = undefined;
+
+    if (flags.environment) {
+      const environments: Environment[] = await postmanClient.getEnvironments()
+      const environment: Environment | undefined = environments.find(environment => environment.name === flags.environment)
+      if (!environment) {
+        this.log(`Environment ${flags.environment} does not exist`);
+        return;
+      }
+
+      environmentToUse = environment;
+    }
+
     if (collection) {
-      
-      await executeCollection(collection.id, apiKey);
+
+      await executeCollection(collection.id, apiKey, environmentToUse);
     } else {
       this.log(`Connection ${flags.collection} not found!`)
     }
@@ -46,14 +61,23 @@ export default class World extends Command {
   }
 }
 
-function executeCollection(collectionId: string, apiKey: string): Promise<void> {
+function executeCollection(collectionId: string, apiKey: string, environment?: Environment): Promise<void> {
 
   return new Promise(function (resolve, reject) {
     const url = `https://api.getpostman.com/collections/${collectionId}?apikey=${apiKey}`;
-    newman.run({
+
+    const newmanParams: { collection: string, reporters: string, environment?: string } = {
       collection: url,
       reporters: 'cli'
-    }, function (err: Error) {
+    };
+
+    if (environment) {
+
+      const envUrl = `https://api.getpostman.com/environments/${environment.id}?apikey=${apiKey}`;
+      newmanParams['environment'] = envUrl
+    }
+
+    newman.run(newmanParams, function (err: Error) {
 
       if (err) { return reject(err) }
 

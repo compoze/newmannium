@@ -14,6 +14,20 @@ interface GetAllCollectionsResponse {
     collections: Collection[];
 }
 
+interface Environment {
+    id: string;
+    name: string;
+    createdAt: Date;
+    updatedAt: Date;
+    owner: string;
+    uid: string;
+    isPublic: boolean;
+}
+
+interface GetEnvironmentsResponse {
+    environments: Environment[];
+}
+
 const BASE_URI = "https://api.getpostman.com"
 class PostmanClient {
 
@@ -42,10 +56,20 @@ class PostmanClient {
         return result.data
     }
 
+    getEnvironments = async (): Promise<Environment[]> => {
+        const result = await axios.get<GetEnvironmentsResponse>(`${BASE_URI}/environments`, {
+            headers: {
+                "x-api-key": this._apiKey
+            }
+        });
+
+        return result.data.environments
+    }
+
 }
 
 const createPostmanClient = (apiKey: string): PostmanClient => {
     return new PostmanClient(apiKey);
 }
 
-export { PostmanClient, createPostmanClient, Collection }
+export { PostmanClient, createPostmanClient, Collection, Environment }
