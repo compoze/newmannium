@@ -17,17 +17,69 @@ While Postman's cloud-based Workspaces making collaborating on collections easy,
 ## Docs
 <!-- toc -->
 * [Installation](#installation)
-* [Usage](#usage)
 * [Commands](#commands)
+* [Usage](#usage)
 <!-- tocstop -->
 # Installation
 <!-- usage -->
 ```sh-session
 $ npm install -g newmannium
+$ newmannium COMMAND
+running command...
+$ newmannium (--version)
+newmannium/0.0.1 darwin-arm64 node-v16.13.0
+$ newmannium --help [COMMAND]
+USAGE
+  $ newmannium COMMAND
+...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`newmannium collections`](#newmannium-collections)
+* [`newmannium run`](#newmannium-run)
+
+## `newmannium collections`
+
+List all collections user has access to
+
+```
+USAGE
+  $ newmannium collections [-h]
+
+FLAGS
+  -h, --help  Show CLI help.
+
+DESCRIPTION
+  List all collections user has access to
+
+EXAMPLES
+  $ oex newmannium collections
+```
+
+_See code: [dist/commands/collections.ts](https://github.com/compoze/newmannium/blob/v0.0.1/dist/commands/collections.ts)_
+
+## `newmannium run`
+
+Execute postman cloud collection via newman
+
+```
+USAGE
+  $ newmannium run -c <value> [-h]
+
+FLAGS
+  -c, --collection=<value>  (required) name of collection in postman cloud to run
+  -h, --help                Show CLI help.
+
+DESCRIPTION
+  Execute postman cloud collection via newman
+
+EXAMPLES
+  $ oex newmannium run -c test.postman_collection.json
+```
+
+_See code: [dist/commands/run.ts](https://github.com/compoze/newmannium/blob/v0.0.1/dist/commands/run.ts)_
+<!-- commandsstop -->
 * [`newmannium run`](#newmannium-run)
 * [`newmannium collections`](#newmannium-collections)
 

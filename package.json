@@ -1,7 +1,7 @@
 {
   "name": "newmannium",
   "description": "CLI to manage postman cloud resources easily",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Compoze Labs",
   "bin": {
     "newmannium": "./bin/run"
@@ -52,8 +52,7 @@
     "bin": "newmannium",
     "commands": "./dist/commands",
     "topicSeparator": " ",
-    "topics": {
-    }
+    "topics": {}
   },
   "repository": "compoze/newmannium",
   "scripts": {
