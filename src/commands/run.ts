@@ -1,5 +1,5 @@
 import { Command, Flags } from "@oclif/core";
-import { Collection, postmanClient } from "../../postman/collections.client";
+import { Collection, postmanClient } from "../postman/collections.client";
 
 const newman = require('newman'); // require newman in your project
 

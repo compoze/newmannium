@@ -1,9 +1,5 @@
 import { Command, Flags } from "@oclif/core";
-import { postmanClient } from "../../postman/collections.client";
-import cli from 'cli-ux'
-import { table } from 'cli-ux/lib/styled/table';
-
-import axios from "axios";
+import { postmanClient } from "../postman/collections.client";
 
 export default class Collections extends Command {
     static description = 'List all collections user has access to'
