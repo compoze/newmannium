@@ -16,8 +16,6 @@ export default class Collections extends Command {
     static args = []
 
     async run(): Promise<void> {
-        const { flags } = await this.parse(Collections)
-
         const collections = await postmanClient.getCollections();
 
         const collectsString = collections.map(collection => `${collection.name}`).join(' | ')

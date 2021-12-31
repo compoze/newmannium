@@ -17,6 +17,7 @@ While Postman's cloud-based Workspaces making collaborating on collections easy,
 ## Docs
 <!-- toc -->
 * [Installation](#installation)
+* [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
 # Installation
@@ -27,12 +28,37 @@ $ npm install -g newmannium
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`newmannium collections`](#newmannium-collections)
 * [`newmannium run`](#newmannium-run)
+* [`newmannium collections`](#newmannium-collections)
+
+# Usage
+
+In order for Newmannium to access your Postman API Collections, Newmannium expects an environment named **POSTMAN_API_KEY** to be available in the shell. You can generate a Postman API Key from their site here: [Generate Token](https://lively-eclipse-481148.postman.co/settings/me/api-keys?)
+
+## `newmannium run`
+
+Execute Postman Cloud Workspace Collection via newman
+
+```
+USAGE
+  $ newmannium run -c <name_of_collection>
+
+FLAGS
+  -c, --collection=<value>  (required) name of collection in postman cloud to run
+  -h, --help                Show CLI help.
+
+DESCRIPTION
+  Execute postman cloud collection via newman
+
+EXAMPLES
+  $ newmannium run -c test.postman_collection.json
+```
+
+If the collection does not exist, or the user token does not have access to the collection, an error is returned
 
 ## `newmannium collections`
 
-List all collections user has access to
+List all Postman Workspace Collections user has access to
 
 ```
 USAGE
@@ -45,89 +71,5 @@ DESCRIPTION
   List all collections user has access to
 
 EXAMPLES
-  $ oex newmannium collections
-```
-
-_See code: [dist/commands/collections.ts](https://github.com/compoze/newmannium/blob/v0.0.0/dist/commands/collections.ts)_
-
-## `newmannium run`
-
-Execute postman cloud collection via newman
-
-```
-USAGE
-  $ newmannium run -c <value> [-h]
-
-FLAGS
-  -c, --collection=<value>  (required) name of collection in postman cloud to run
-  -h, --help                Show CLI help.
-
-DESCRIPTION
-  Execute postman cloud collection via newman
-
-EXAMPLES
-  $ oex newmannium run -c test.postman_collection.json
-```
-
-_See code: [dist/commands/run.ts](https://github.com/compoze/newmannium/blob/v0.0.0/dist/commands/run.ts)_
-<!-- commandsstop -->
-* [`newmannium help [COMMAND]`](#newmannium-help-command)
-* [`newmannium newmannium collections`](#newmannium-newmannium-collections)
-* [`newmannium newmannium run`](#newmannium-newmannium-run)
-
-## `newmannium help [COMMAND]`
-
-Display help for newmannium.
-
-```
-USAGE
-  $ newmannium help [COMMAND] [-n]
-
-ARGUMENTS
-  COMMAND  Command to show help for.
-
-FLAGS
-  -n, --nested-commands  Include all nested commands in the output.
-
-DESCRIPTION
-  Display help for newmannium.
-```
-
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.10/src/commands/help.ts)_
-
-## `newmannium newmannium collections`
-
-List all collections user has access to
-
-```
-USAGE
-  $ newmannium newmannium collections [-h]
-
-FLAGS
-  -h, --help  Show CLI help.
-
-DESCRIPTION
-  List all collections user has access to
-
-EXAMPLES
-  $ oex newmannium collections
-```
-
-## `newmannium newmannium run`
-
-Execute postman cloud collection via newman
-
-```
-USAGE
-  $ newmannium newmannium run -c <value> [-h]
-
-FLAGS
-  -c, --collection=<value>  (required) name of collection in postman cloud to run
-  -h, --help                Show CLI help.
-
-DESCRIPTION
-  Execute postman cloud collection via newman
-
-EXAMPLES
-  $ oex newmannium run -c test.postman_collection.json
+  $ newmannium collections
 ```
