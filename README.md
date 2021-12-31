@@ -27,7 +27,7 @@ $ npm install -g newmannium
 $ newmannium COMMAND
 running command...
 $ newmannium (--version)
-newmannium/0.0.3 darwin-arm64 node-v16.13.0
+newmannium/0.0.4 darwin-arm64 node-v16.13.0
 $ newmannium --help [COMMAND]
 USAGE
   $ newmannium COMMAND
@@ -57,7 +57,7 @@ EXAMPLES
   $ oex newmannium collections
 ```
 
-_See code: [dist/commands/collections.ts](https://github.com/compoze/newmannium/blob/v0.0.3/dist/commands/collections.ts)_
+_See code: [dist/commands/collections.ts](https://github.com/compoze/newmannium/blob/v0.0.4/dist/commands/collections.ts)_
 
 ## `newmannium run`
 
@@ -65,11 +65,12 @@ Execute postman cloud collection via newman
 
 ```
 USAGE
-  $ newmannium run -c <value> [-h]
+  $ newmannium run -c <value> [-h] [-e <value>]
 
 FLAGS
-  -c, --collection=<value>  (required) name of collection in postman cloud to run
-  -h, --help                Show CLI help.
+  -c, --collection=<value>   (required) name of collection in postman cloud to run
+  -e, --environment=<value>  name of environment to use with collection
+  -h, --help                 Show CLI help.
 
 DESCRIPTION
   Execute postman cloud collection via newman
@@ -78,7 +79,7 @@ EXAMPLES
   $ oex newmannium run -c test.postman_collection.json
 ```
 
-_See code: [dist/commands/run.ts](https://github.com/compoze/newmannium/blob/v0.0.3/dist/commands/run.ts)_
+_See code: [dist/commands/run.ts](https://github.com/compoze/newmannium/blob/v0.0.4/dist/commands/run.ts)_
 <!-- commandsstop -->
 * [`newmannium run`](#newmannium-run)
 * [`newmannium collections`](#newmannium-collections)

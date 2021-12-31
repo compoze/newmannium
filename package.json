@@ -1,7 +1,7 @@
 {
   "name": "newmannium",
   "description": "CLI to manage postman cloud resources easily",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Compoze Labs",
   "bin": {
     "newmannium": "./bin/run"
