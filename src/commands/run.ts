@@ -1,5 +1,5 @@
 import { Command, Flags } from "@oclif/core";
-import { Collection, postmanClient } from "../postman/collections.client";
+import { Collection, createPostmanClient } from "../postman/collections.client";
 
 const newman = require('newman'); // require newman in your project
 
@@ -23,6 +23,15 @@ export default class World extends Command {
   async run(): Promise<void> {
     const { flags } = await this.parse(World)
     const collectionName = flags.collection;
+
+    const apiKey: string | undefined = process.env.POSTMAN_API_KEY
+    
+    if (!apiKey) {
+      this.log('POSTMAN_API_KEY not set. You can generate one here: https://lively-eclipse-481148.postman.co/settings/me/api-keys?')
+      return
+    }
+
+    const postmanClient = createPostmanClient(apiKey);
 
     const collections: Collection[] = await postmanClient.getCollections();
 

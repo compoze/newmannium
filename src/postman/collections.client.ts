@@ -19,8 +19,8 @@ class PostmanClient {
 
     private readonly _apiKey: string;
 
-    constructor() {
-        this._apiKey = process.env.POSTMAN_API_KEY!
+    constructor(apiKey: string) {
+        this._apiKey = apiKey;
     }
 
     getCollections = async (): Promise<Collection[]> => {
@@ -44,10 +44,8 @@ class PostmanClient {
 
 }
 
-const createPostmanClient = (): PostmanClient => {
-    return new PostmanClient();
+const createPostmanClient = (apiKey: string): PostmanClient => {
+    return new PostmanClient(apiKey);
 }
 
-const postmanClient = createPostmanClient();
-
-export { PostmanClient, postmanClient, Collection }
+export { PostmanClient, createPostmanClient, Collection }
