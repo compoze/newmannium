@@ -1,6 +1,5 @@
 import { Command, Flags } from "@oclif/core";
 import { Collection, createPostmanClient } from "../postman/collections.client";
-
 const newman = require('newman'); // require newman in your project
 
 export default class World extends Command {
@@ -25,7 +24,7 @@ export default class World extends Command {
     const collectionName = flags.collection;
 
     const apiKey: string | undefined = process.env.POSTMAN_API_KEY
-    
+
     if (!apiKey) {
       this.log('POSTMAN_API_KEY not set. You can generate one here: https://lively-eclipse-481148.postman.co/settings/me/api-keys?')
       return
@@ -38,14 +37,28 @@ export default class World extends Command {
     const collection: Collection | undefined = collections.find(collection => collection.name === collectionName)
 
     if (collection) {
-      await newman.run({
-        collection: collection,
-        reporters: 'cli'
-      });
-      this.log('successfully completed postman')
+      
+      await executeCollection(collection.id, apiKey);
     } else {
       this.log(`Connection ${flags.collection} not found!`)
     }
 
   }
+}
+
+function executeCollection(collectionId: string, apiKey: string): Promise<void> {
+
+  return new Promise(function (resolve, reject) {
+    const url = `https://api.getpostman.com/collections/${collectionId}?apikey=${apiKey}`;
+    newman.run({
+      collection: url,
+      reporters: 'cli'
+    }, function (err: Error) {
+
+      if (err) { return reject(err) }
+
+      return resolve()
+    });
+  })
+
 }

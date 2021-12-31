@@ -12,13 +12,15 @@
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
     "axios": "^0.24.0",
-    "newman": "^5.3.0"
+    "newman": "^5.3.0",
+    "postman-collection": "^4.1.0"
   },
   "devDependencies": {
     "@oclif/test": "^2",
     "@types/chai": "^4",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.9.4",
+    "@types/postman-collection": "^3.5.7",
     "chai": "^4",
     "eslint": "^7.32.0",
     "eslint-config-oclif": "^4",
