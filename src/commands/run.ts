@@ -29,7 +29,7 @@ export default class World extends Command {
     const apiKey: string | undefined = process.env.POSTMAN_API_KEY
 
     if (!apiKey) {
-      this.log('POSTMAN_API_KEY not set. You can generate one here: https://lively-eclipse-481148.postman.co/settings/me/api-keys?')
+      this.log('POSTMAN_API_KEY not set. You can generate one here: https://go.postman.co/settings/me/api-keys')
       return
     }
 
