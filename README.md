@@ -27,7 +27,7 @@ $ npm install -g newmannium
 $ newmannium COMMAND
 running command...
 $ newmannium (--version)
-newmannium/0.0.4 darwin-arm64 node-v16.13.0
+newmannium/0.0.5 darwin-arm64 node-v16.13.0
 $ newmannium --help [COMMAND]
 USAGE
   $ newmannium COMMAND
@@ -57,7 +57,7 @@ EXAMPLES
   $ oex newmannium collections
 ```
 
-_See code: [dist/commands/collections.ts](https://github.com/compoze/newmannium/blob/v0.0.4/dist/commands/collections.ts)_
+_See code: [dist/commands/collections.ts](https://github.com/compoze/newmannium/blob/v0.0.5/dist/commands/collections.ts)_
 
 ## `newmannium run`
 
@@ -79,7 +79,7 @@ EXAMPLES
   $ oex newmannium run -c test.postman_collection.json
 ```
 
-_See code: [dist/commands/run.ts](https://github.com/compoze/newmannium/blob/v0.0.4/dist/commands/run.ts)_
+_See code: [dist/commands/run.ts](https://github.com/compoze/newmannium/blob/v0.0.5/dist/commands/run.ts)_
 <!-- commandsstop -->
 * [`newmannium run`](#newmannium-run)
 * [`newmannium collections`](#newmannium-collections)
