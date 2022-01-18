@@ -77,9 +77,14 @@ function executeCollection(collectionId: string, apiKey: string, environment?: E
       newmanParams['environment'] = envUrl
     }
 
-    newman.run(newmanParams, function (err: Error) {
+    newman.run(newmanParams, function (err: Error, summary: any) {
 
-      if (err) { return reject(err) }
+      if (err) {
+        return reject(err)
+      }
+      if (summary.run.failures.length) {
+        process.exit(1);
+      }
 
       return resolve()
     });
