@@ -1,4 +1,5 @@
 import { Command, Flags } from "@oclif/core";
+import { AxiosError } from "axios";
 import { Collection, createPostmanClient, Environment } from "../postman/collections.client";
 const newman = require('newman'); // require newman in your project
 
@@ -33,31 +34,45 @@ export default class World extends Command {
       return
     }
 
-    const postmanClient = createPostmanClient(apiKey);
+    try {
+      const postmanClient = createPostmanClient(apiKey);
 
-    const collections: Collection[] = await postmanClient.getCollections();
-    const collection: Collection | undefined = collections.find(collection => collection.name === collectionName)
+      const collections: Collection[] = await postmanClient.getCollections();
+      const collection: Collection | undefined = collections.find(collection => collection.name === collectionName)
 
-    let environmentToUse: Environment | undefined = undefined;
+      let environmentToUse: Environment | undefined = undefined;
 
-    if (flags.environment) {
-      const environments: Environment[] = await postmanClient.getEnvironments()
-      const environment: Environment | undefined = environments.find(environment => environment.name === flags.environment)
-      if (!environment) {
-        this.log(`Environment ${flags.environment} does not exist`);
-        return;
+      if (flags.environment) {
+        const environments: Environment[] = await postmanClient.getEnvironments()
+        const environment: Environment | undefined = environments.find(environment => environment.name === flags.environment)
+        if (!environment) {
+          this.log(`Environment ${flags.environment} does not exist`);
+          return;
+        }
+
+        environmentToUse = environment;
       }
 
-      environmentToUse = environment;
+      if (collection) {
+
+        await executeCollection(collection.id, apiKey, environmentToUse);
+      } else {
+        this.log(`Connection ${flags.collection} not found!`)
+      }
+
+    }
+    catch (error) {
+      const err = error as AxiosError
+
+      if (err.response) {
+        if (err.response.status === 401) {
+          this.log('POSTMAN_API_KEY is invalid, pleasure ensure this value is set with a valid Postman API Key')
+          return
+        }
+      }
     }
 
-    if (collection) {
-
-      await executeCollection(collection.id, apiKey, environmentToUse);
-    } else {
-      this.log(`Connection ${flags.collection} not found!`)
-    }
-
+    this.log('There was an error executing the newmannium script');
   }
 }
 
