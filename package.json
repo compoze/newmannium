@@ -12,7 +12,7 @@
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.1.0",
     "axios": "^0.24.0",
-    "newman": "^5.3.0"
+    "newman": "^5.3.2"
   },
   "devDependencies": {
     "@oclif/test": "^2",
